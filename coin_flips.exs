@@ -1,6 +1,6 @@
 # Run as: iex --dot-iex path/to/notebook.exs
 
-# Title: CS-474_HW1
+# Title: Coin Flip Process Analysis
 
 # ── Random Coin Flips ──
 
