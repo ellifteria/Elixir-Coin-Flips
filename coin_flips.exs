@@ -1,15 +1,12 @@
-# CS-474_HW1
+# Run as: iex --dot-iex path/to/notebook.exs
 
-## Random Coin Flips
+# Title: CS-474_HW1
 
-```elixir
+# ── Random Coin Flips ──
+
 num_flips = 300
 random_coin_flips = 1..300 |> Enum.reduce("", fn _, acc -> acc <> <<Enum.random([?H, ?T])>> end)
-```
 
-<!-- livebook:{"reevaluate_automatically":true} -->
-
-```elixir
 center_has_run = fn graphemes ->
   first = hd(graphemes)
   last = graphemes |> Enum.reverse() |> hd
@@ -19,11 +16,7 @@ center_has_run = fn graphemes ->
     center |> Enum.all?(&(&1 != first)) and
     center |> Enum.uniq() |> length == 1
 end
-```
 
-<!-- livebook:{"reevaluate_automatically":true} -->
-
-```elixir
 count_runs_of_length = fn len, string ->
   string
   |> String.graphemes()
@@ -39,11 +32,7 @@ count_runs_of_length = fn len, string ->
     end
   end)
 end
-```
 
-<!-- livebook:{"reevaluate_automatically":true} -->
-
-```elixir
 get_all_run_counts = fn flips ->
   1..String.length(flips)
   |> Enum.each(fn x ->
@@ -54,20 +43,12 @@ get_all_run_counts = fn flips ->
     end
   end)
 end
-```
 
-<!-- livebook:{"reevaluate_automatically":true} -->
-
-```elixir
 IO.puts(random_coin_flips)
 get_all_run_counts.(random_coin_flips)
-```
 
-## Not-Entirely-Random Coin Flips
+# ── Not-Entirely-Random Coin Flips ──
 
-<!-- livebook:{"reevaluate_automatically":true} -->
-
-```elixir
 generate_next = fn curr, prob ->
   if :rand.uniform() <= prob do
     curr
@@ -79,9 +60,7 @@ generate_next = fn curr, prob ->
     end
   end
 end
-```
 
-```elixir
 gamma = 0.3
 
 semi_random_coin_flips =
@@ -89,11 +68,6 @@ semi_random_coin_flips =
   |> Enum.reduce(<<Enum.random([?H, ?T])>>, fn _, acc ->
     acc <> generate_next.(String.last(acc), gamma)
   end)
-```
 
-<!-- livebook:{"reevaluate_automatically":true} -->
-
-```elixir
 IO.puts(semi_random_coin_flips)
 get_all_run_counts.(semi_random_coin_flips)
-```
